@@ -1,0 +1,53 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm:node-18.12.0'
+    dir: ons-social-crawler-fe
+    args: ['install']
+    id: NPM_INSTALL
+
+  - name: 'gcr.io/cloud-builders/npm:node-18.12.0'
+    dir: ons-social-crawler-fe
+    args: [run, build]
+    id: NPM_BUILD
+    env:
+      - 'VITE_APP_API_URL=$_VITE_APP_API_URL'
+      - 'VITE_APP_VERSION=$_VITE_APP_VERSION'
+      - 'VITE_APP_FIREBASE_API_KEY=$_VITE_APP_FIREBASE_API_KEY'
+      - 'VITE_APP_FIREBASE_AUTH_DOMAIN=$_VITE_APP_FIREBASE_AUTH_DOMAIN'
+      - 'VITE_APP_FIREBASE_PROJECT_ID=$_VITE_APP_FIREBASE_PROJECT_ID'
+      - 'VITE_APP_FIREBASE_STORAGE_BUCKET=$_VITE_APP_FIREBASE_STORAGE_BUCKET'
+      - 'VITE_APP_FIREBASE_MESSAGING_SENDER_ID=$_VITE_APP_FIREBASE_MESSAGING_SENDER_ID'
+      - 'VITE_APP_FIREBASE_APP_ID=$_VITE_APP_FIREBASE_APP_ID'
+      - 'VITE_APP_FIREBASE_MEASUREMENT_ID=$_VITE_APP_FIREBASE_MEASUREMENT_ID'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: ons-social-crawler-fe
+    args:
+      - 'build'
+      - '--tag=gcr.io/ons-hatespeech-detector-2/ons2-fe:$TAG_NAME'
+      - '--tag=gcr.io/ons-hatespeech-detector-2/ons2-fe:latest'
+      - '.'
+    id: BUILD_FE_IMAGE
+
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: ons-social-crawler-fe
+    args: ['push', 'gcr.io/ons-hatespeech-detector-2/ons2-fe:$TAG_NAME']
+    id: PUSH_FE
+
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: ons-social-crawler-fe
+    args: ['push', 'gcr.io/ons-hatespeech-detector-2/ons2-fe:latest']
+    id: PUSH_FE_LATEST
+
+  ################ START DEPLOY ##################
+  - name: 'gcr.io/cloud-builders/gke-deploy:stable'
+    dir: ons-social-crawler-fe
+    args:
+      - run
+      - --filename=k8s/deployment.yaml
+      - --image=gcr.io/ons-hatespeech-detector-2/ons2-fe:$TAG_NAME
+      - --location=europe-west1-b
+      - --cluster=ons2-k8s
+      - --project=ons-hatespeech-detector-2
+    id: DEPLOY_FE
+timeout: 900s
+images: ['gcr.io/ons-hatespeech-detector-2/ons2-fe']
