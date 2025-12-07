@@ -1,0 +1,31 @@
+@import './base.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+body {
+  min-width: 576px;
+}
+
+.nav-list-ul {
+  list-style: none;
+}
+
+router-link,
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.item--active {
+}
+
+/* page:START */
+.page-container {
+  padding: 0.9rem 0;
+}
+/* page:END */
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+}

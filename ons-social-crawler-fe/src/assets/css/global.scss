@@ -1,0 +1,267 @@
+/* VARIABLES */
+:root {
+  /* COLORS */
+  --primary-color: #005b9c;
+  --secondary-color: #ebba17;
+
+  /* SIZE */
+  --header-height: 5rem;
+  --sidebar-padding: 0.3rem;
+  --drawer-paddingX: 1.9rem;
+}
+
+/* BASIC SETTINGS */
+:root {
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  color: #333;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+* {
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 576px;
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* LIST */
+.nav-list-ul {
+  list-style: none;
+}
+
+/* LINK */
+router-link,
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* SWAL2 */
+.swal2-container {
+  .btn-primary {
+    color: white;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+  }
+
+  .swal2-actions {
+    gap: 1rem;
+  }
+}
+
+/* DIGITABLE */
+/* Paginazione */
+.dataTables_paginate {
+  --bs-pagination-color: orange;
+  .pagination * {
+    --bs-pagination-padding-x: 0.6rem;
+    --bs-pagination-padding-y: 0.3rem;
+    --bs-pagination-font-size: 1rem;
+    --bs-pagination-color: var(--primary-color);
+    --bs-pagination-bg: #fff;
+    --bs-pagination-border-width: 1px;
+    --bs-pagination-border-color: #dee2e6;
+    --bs-pagination-border-radius: 0.375rem;
+    --bs-pagination-hover-color: var(--bs-link-hover-color);
+    --bs-pagination-hover-bg: var(--secondary-color);
+    --bs-pagination-hover-border-color: #dee2e6;
+    --bs-pagination-focus-color: var(--bs-link-hover-color);
+    --bs-pagination-focus-bg: var(--primary-color);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    --bs-pagination-active-color: white;
+    --bs-pagination-active-bg: var(--primary-color);
+    --bs-pagination-active-border-color: #0d6efd;
+    --bs-pagination-disabled-color: #6c757d;
+    --bs-pagination-disabled-bg: #fff;
+    --bs-pagination-disabled-border-color: #dee2e6;
+
+    .paginate_button {
+      * {
+      }
+      .page-link {
+        .svg-icon {
+          img {
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Table Head */
+.dataTables_wrapper {
+  table {
+    th {
+      white-space: nowrap;
+    }
+  }
+}
+
+/* Struttura componente */
+.page-title {
+  margin-bottom: 2.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-content {
+  border-radius: 6px;
+
+  .dataTables_wrapper .table-responsive {
+    border: 1px solid #ced4da !important;
+    border-radius: 6px !important;
+    margin-bottom: 1rem;
+  }
+
+  .dataTables_wrapper .table-responsive table {
+    border: none !important;
+    margin-bottom: 0 !important;
+
+    thead tr {
+    }
+
+    > :not(caption) > * > * {
+      border-bottom: none !important;
+    }
+  }
+}
+
+/* ICONA YOUTUBE */
+.title-icon {
+  padding-right: 0.3rem;
+}
+
+.title-icon.fa-youtube,
+.action-icon.fa-youtube {
+  color: #f00 !important;
+  transform: translateY(0.05rem) !important;
+}
+
+/* ICONA TWITCH */
+.title-icon.fa-twitch,
+.action-icon.fa-twitch {
+  color: #bf94ff !important;
+  transform: translateY(0.05rem) !important;
+}
+
+/* ICONA TWITTER */
+.title-icon.fa-twitter,
+.action-icon.fa-twitter {
+  color: #174ea6 !important;
+  transform: translateY(0.05rem) !important;
+}
+
+/* ICONA SETTINGS */
+.title-icon.custom-gear {
+  --size: 2.4rem;
+  display: inline-block;
+  height: var(--size);
+  width: var(--size);
+  fill: hsl(0deg, 0%, 60%);
+  transform: translateY(-10%);
+}
+
+/* ICONA DASHBOARD */
+.title-icon.custom-chart {
+  --size: 2.4rem;
+  display: inline-block;
+  height: var(--size);
+  width: var(--size);
+  fill: hsl(221, 76%, 55%);
+  transform: translateY(-10%);
+}
+
+/* ICONA COME FUNZIONA */
+.title-icon.custom-info {
+  --size: 2.4rem;
+  display: inline-block;
+  height: var(--size);
+  width: var(--size);
+  fill: hsl(221, 76%, 55%);
+  transform: translateY(-10%);
+}
+
+/* #APP */
+#app {
+  /* BUTTONS */
+  .btn-primary {
+    color: white;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+  }
+
+  /* TEXT */
+  .text-primary {
+    color: var(--primary-color) !important;
+  }
+
+  /* LAYOUT */
+  .wrapper {
+    display: flex;
+    position: relative;
+
+    .drawer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: auto;
+
+      .page {
+        flex: 1;
+        padding: 1rem var(--drawer-paddingX);
+
+        .page-container {
+          padding: 0.9rem 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+
+.el-select.form-control {
+  height: auto;
+  padding: 0.12rem;
+
+  .el-input__wrapper {
+    box-shadow: none;
+    padding-left: .775rem !important;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 992px) {
+    padding: 0.01rem;
+  }
+}
+
+
+.el-select--large .el-input__wrapper {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
